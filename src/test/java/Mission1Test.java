@@ -36,7 +36,8 @@ public class Mission1Test {
         Assert.assertEquals(tHelp.getTitle(),"Добавить entry");
 
         // 8-11) Write lines: title, slug, text markdown, text
-        tHelp.fillEntry("TITLE_1234321","SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
+        String titleLine = "TITLE_1234321";
+        tHelp.fillEntry(titleLine,"SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
 
         // 12) Click button save
         tHelp.clickSaveButton();
@@ -45,11 +46,11 @@ public class Mission1Test {
         driver.get("http://igorakintev.ru/blog/");
 
         // 14) Verifies that a new page has a section
-        Assert.assertEquals(tHelp.searchSection("TITLE_1234321"),"TITLE_1234321");
+        Assert.assertEquals(tHelp.searchSection(titleLine),titleLine);
 
         // 15) Delete
         driver.get("http://igorakintev.ru/admin/blog/entry/");
-        tHelp.deleteSection("TITLE_1234321");
+        tHelp.deleteSection(titleLine);
 
     }
 
