@@ -39,7 +39,13 @@ public class Mission1Test {
         tHelp.writeLines(driver,"TITLE_1234321","SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
 
         // 12) Click button save
+        tHelp.saveButton(driver);
 
+        // 13) Open page http://igorakintev.ru/blog/
+        driver.get("http://igorakintev.ru/blog/");
+
+        // 14) Verifies that a new page has a header
+        Assert.assertEquals(tHelp.searchSection(driver,"TITLE_1234321"),"TITLE_1234321");
 
     }
 

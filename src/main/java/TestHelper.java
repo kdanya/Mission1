@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class TestHelper {
@@ -17,6 +18,14 @@ public class TestHelper {
         driver.findElement(By.id("id_slug")).sendKeys(slug);
         driver.findElement(By.id("id_text_markdown")).sendKeys(textMar);
         driver.findElement(By.id("id_text")).sendKeys(text);
+    }
+
+    public void saveButton (WebDriver driver){
+        driver.findElement(By.className("submit-row")).findElement(By.className("default")).submit();
+    }
+
+    public String searchSection(WebDriver driver, String title){
+       return driver.findElement(By. id("entries")).findElement(By.linkText(title)).getText();
     }
 
 
