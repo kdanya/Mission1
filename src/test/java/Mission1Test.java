@@ -22,30 +22,34 @@ public class Mission1Test {
         driver.get("http://igorakintev.ru/admin/");
 
         // 2-4) Authorization
-        LoginPage login = new LoginPage();
-        login.authorization(driver,"silenium","super_password");
+        LoginPage login = new LoginPage(driver);
+        login.authorization("silenium","super_password");
 
         // 5) Verifies that a new page has a header - "Панель управления"
-        TestHelper tHelp = new TestHelper();
-        Assert.assertEquals(tHelp.title(driver),"Панель управления");
+        AdminPage tHelp = new AdminPage(driver);
+        Assert.assertEquals(tHelp.getTitle(),"Панель управления");
 
         // 6)Click button addEntries
-        tHelp.clickAddEntries(driver);
+        tHelp.clickAddEntries();
 
         // 7) Verifies that a new page has a header - "Добавить entry"
-        Assert.assertEquals(tHelp.title(driver),"Добавить entry");
+        Assert.assertEquals(tHelp.getTitle(),"Добавить entry");
 
         // 8-11) Write lines: title, slug, text markdown, text
-        tHelp.writeLines(driver,"TITLE_1234321","SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
+        tHelp.fillEntry("TITLE_1234321","SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
 
         // 12) Click button save
-        tHelp.saveButton(driver);
+        tHelp.clickSaveButton();
 
         // 13) Open page http://igorakintev.ru/blog/
         driver.get("http://igorakintev.ru/blog/");
 
-        // 14) Verifies that a new page has a header
-        Assert.assertEquals(tHelp.searchSection(driver,"TITLE_1234321"),"TITLE_1234321");
+        // 14) Verifies that a new page has a section
+        Assert.assertEquals(tHelp.searchSection("TITLE_1234321"),"TITLE_1234321");
+
+        // 15) Delete
+        driver.get("http://igorakintev.ru/admin/blog/entry/");
+        tHelp.deleteSection("TITLE_1234321");
 
     }
 
