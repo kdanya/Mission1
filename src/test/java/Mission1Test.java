@@ -25,9 +25,21 @@ public class Mission1Test {
         LoginPage login = new LoginPage();
         login.authorization(driver,"silenium","super_password");
 
-        // 5) Verifies that a new page has a header
+        // 5) Verifies that a new page has a header - "Панель управления"
         TestHelper tHelp = new TestHelper();
         Assert.assertEquals(tHelp.title(driver),"Панель управления");
+
+        // 6)Click button addEntries
+        tHelp.clickAddEntries(driver);
+
+        // 7) Verifies that a new page has a header - "Добавить entry"
+        Assert.assertEquals(tHelp.title(driver),"Добавить entry");
+
+        // 8-11) Write lines: title, slug, text markdown, text
+        tHelp.writeLines(driver,"TITLE_1234321","SLUG_1234321","TEXT_MAR_1234321","TEXT_1234321");
+
+        // 12) Click button save
+
 
     }
 
