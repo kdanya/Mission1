@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -23,6 +24,10 @@ public class Mission1Test {
         // 2-4) Authorization
         LoginPage login = new LoginPage();
         login.authorization(driver,"silenium","super_password");
+
+        // 5) Verifies that a new page has a header
+        TestHelper tHelp = new TestHelper();
+        Assert.assertEquals(tHelp.title(driver),"Панель управления");
 
     }
 
