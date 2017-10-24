@@ -35,7 +35,6 @@ public class AdminPage {
 
     public void deleteSection(String title){
         String delUrl = driver.findElement(By.linkText(title)).getAttribute("href")+"delete/";
-        driver.findElement(By.linkText(title)).click();
         driver.get(delUrl);
         driver.findElement(By.xpath("//*[@id=\'content\']/form/div/input[2]")).submit();
     }
